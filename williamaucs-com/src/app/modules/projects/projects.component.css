@@ -1,0 +1,48 @@
+.projects-container {
+    color: white;
+}
+
+.projects-header {
+    text-align: center;
+    padding-top: 7%;
+    font-size: 320%;
+}
+
+.project-item {
+    padding: 25px;
+    /* border: 1px solid red; */
+    margin: 5% 0 0 0;
+    height: 500px;
+    width: 100%;
+    float: right;
+    display: flex;
+}
+
+.project-summery {
+    /* border: 2px solid blue; */
+    margin: 5% 0 0 10%;
+    width: 17%;
+    padding: 5px;
+}
+
+.project-summery-list {
+    display: flex;
+    margin-top: 6%;
+}
+
+.project-description {
+    /* border: 2px solid yellow; */
+    color: white;
+    height: 50%;
+    width: 30%;
+    margin: 5% 3% 0 15%;
+}
+
+.project-img {
+    border: 1px solid blue;
+    margin-top: 5%;
+    margin-right: 10%;
+    float: right;
+    width: 25%;
+    height: 55%;
+}

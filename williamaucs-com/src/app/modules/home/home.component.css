@@ -1,0 +1,17 @@
+.background {
+    background-color: black;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.name-container {
+    position: relative;
+    color: white;
+    margin: 20% 0 0 9%;
+}
+
+.routes {
+    color: white;
+    margin: 12% 0 0 9%;
+}

@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { ContactComponent } from './modules/contact/contact.component';
-import { AboutComponent } from './modules/about/about.component';
 import { SandboxComponent } from './modules/sandbox/sandbox.component';
 import { ModulesModule } from './modules/modules.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +13,6 @@ import { SharedModule } from './shared/shared.module';
   declarations: [
     AppComponent,
     ContactComponent,
-    AboutComponent,
     SandboxComponent,
   ],
   imports: [
@@ -21,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule, 
     ModulesModule, 
     SharedModule, 
+    BrowserAnimationsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
