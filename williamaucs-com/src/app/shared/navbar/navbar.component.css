@@ -1,13 +1,13 @@
 .background {
     background-color: black;
-    position: fixed;
-    height: 100%;
-    width: 100%;
+    position: relative;
+    /* border: 1px solid red; */
 }
 
 .navigation-bar {
-    margin-top: 8%;
+    padding-top: 8%;
     display: flex;
+    margin-bottom: 0;
 }
 
 .nav-item {
@@ -18,14 +18,11 @@
 a.nav-link {
     color: white;
     font-size: 170%;
+    outline: none;
 }
 
 .gap-between {
     margin-left: 5%;
-}
-
-.nav-container {
-    width: 100%;
 }
 
 /* ---Underline Animation--- */

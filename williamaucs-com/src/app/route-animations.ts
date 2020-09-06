@@ -17,11 +17,13 @@ export const slider =
         transition('home => projects', slideTo('right')),
         transition('projects => sandbox', slideTo('right')),
         transition('sandbox => contact', slideTo('right')),
+        transition('sandbox => home', slideTo('right')),
 
         // Slide to left
         transition('contact => sandbox', slideTo('left')), 
         transition('sandbox => projects', slideTo('left')), 
         transition('projects => home', slideTo('left')), 
+        transition('home => sandbox', slideTo('left')),
     ]);
 
 function slideTo(direction) {

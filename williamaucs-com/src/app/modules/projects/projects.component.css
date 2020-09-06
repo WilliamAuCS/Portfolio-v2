@@ -1,3 +1,10 @@
+.background {
+    background-color: black;
+    position: absolute;
+    
+    /* border: 2px solid blue; */
+}
+
 .projects-container {
     color: white;
 }
@@ -9,8 +16,8 @@
 }
 
 .project-item {
+    border: 1px solid red;
     padding: 25px;
-    /* border: 1px solid red; */
     margin: 5% 0 0 0;
     height: 500px;
     width: 100%;
@@ -20,8 +27,8 @@
 
 .project-summery {
     /* border: 2px solid blue; */
-    margin: 5% 0 0 10%;
-    width: 17%;
+    margin: 5% 0 0 8%;
+    width: auto;
     padding: 5px;
 }
 
@@ -39,7 +46,7 @@
 }
 
 .project-img {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     margin-top: 5%;
     margin-right: 10%;
     float: right;
