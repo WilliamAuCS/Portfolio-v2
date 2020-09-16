@@ -5,13 +5,22 @@
     width: 100%;
 }
 
+#portrait-img {
+    height: 1000px;
+    position: absolute;
+    right: 15%;
+}
+
 .name-container {
     position: relative;
     color: white;
     margin: 20% 0 0 9%;
+    background: transparent;
 }
 
-.routes {
-    color: white;
-    margin: 12% 0 0 9%;
+.links a {
+    color: inherit; 
+    margin-right: 235px;
+    text-decoration: none;
+    background: transparent;
 }
