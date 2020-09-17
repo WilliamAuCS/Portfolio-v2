@@ -1,26 +1,11 @@
-/* .jumbotron {
-    background-image: url("../assets/home/WebsiteCodeRotate.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-bottom: 0;
-}
-.header {
-    text-align: right;
-    padding-right: 10%;
+.sandbox-container {
     color: white;
+    margin: 2% 5% 0 5%;
+    /* border: 1px solid red; */
 }
-.background {
-    position: fixed;
-    background-image: url("../assets/home/portfolio_background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-}
-.container{
-    color: white;
-    max-width: 960px;
 
-    border: 1px solid red;
-} */
+.page-header {
+    padding-top: 7%;
+    font-size: 350%;
+    margin: 5% 0 0 5%;
+}
