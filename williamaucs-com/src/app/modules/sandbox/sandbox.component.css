@@ -9,3 +9,8 @@
     font-size: 350%;
     margin: 5% 0 0 5%;
 }
+
+.card-item {
+    /* color: white; */
+    max-width: 400px;
+}

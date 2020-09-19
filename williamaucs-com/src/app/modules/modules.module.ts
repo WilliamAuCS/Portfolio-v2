@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeModule } from './home/home.module';
-import { ProjectsComponent } from './projects/projects.component';
 import { ProjectsModule } from './projects/projects.module';
+import { SandboxModule } from './sandbox/sandbox.module';
 
 
 
@@ -12,6 +12,7 @@ import { ProjectsModule } from './projects/projects.module';
     CommonModule, 
     HomeModule,
     ProjectsModule, 
+    SandboxModule,
   ]
 })
 export class ModulesModule { }

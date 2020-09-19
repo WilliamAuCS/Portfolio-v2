@@ -10,7 +10,6 @@ main {
 }
 * {
   scrollbar-width: none;
-  background-color: black;
 }
 
 /* Animation */
@@ -238,5 +237,10 @@ a.underline-anim:hover:before {
   visibility: visible;
   transform: scaleX(1);
 }
+body {
+  background-color: black;
+}
 
 /* ---Underline Animation--- */
+html, body { height: 100%; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { ContactComponent } from './modules/contact/contact.component';
-import { SandboxComponent } from './modules/sandbox/sandbox.component';
 import { ModulesModule } from './modules/modules.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -13,7 +12,6 @@ import { SharedModule } from './shared/shared.module';
   declarations: [
     AppComponent,
     ContactComponent,
-    SandboxComponent,
   ],
   imports: [
     AppRoutingModule, 
