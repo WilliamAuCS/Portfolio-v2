@@ -1,7 +1,7 @@
 .sandbox-container {
     color: white;
     margin: 2% 5% 0 5%;
-    /* border: 1px solid red; */
+    border: 1px solid red;
 }
 
 .page-header {
@@ -11,6 +11,16 @@
 }
 
 .card-item {
-    /* color: white; */
     max-width: 400px;
+}
+
+.encryption-image {
+    background-image: url('/assets/encryption-image.png');
+    background-size: cover;
+}
+
+.arrow-icon {
+    position: relative;
+    top: 8px;
+    left: 10px;
 }
