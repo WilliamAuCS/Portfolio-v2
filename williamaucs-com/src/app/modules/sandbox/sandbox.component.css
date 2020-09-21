@@ -1,7 +1,7 @@
 .sandbox-container {
     color: white;
     margin: 2% 5% 0 5%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .page-header {
@@ -19,8 +19,11 @@
     background-size: cover;
 }
 
-.arrow-icon {
-    position: relative;
-    top: 8px;
-    left: 10px;
+.form-button {
+    left: 130px;
+    bottom: 20px;
+}
+
+p a {
+    text-decoration: none;
 }

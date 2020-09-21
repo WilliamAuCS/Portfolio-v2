@@ -5,31 +5,33 @@
             <mat-card-header>
                 <div mat-card-avatar class="encryption-image"></div>
                 <mat-card-title>Encryption</mat-card-title>
-                <mat-card-subtitle>Argon2</mat-card-subtitle>
+                <mat-card-subtitle>Argon2i</mat-card-subtitle>
             </mat-card-header>
             <p>
                 <!-- Adding spacing -->
-                <span style="padding-left: 30px;"></span>
+                <span style="padding-left: 120px;"></span>
                 <!-- Input form field -->
                 <mat-form-field style="width: 30%;" appearance="standard">
                     <mat-label>Enter Input</mat-label>
                     <input matInput placeholder="Enter string" type="text" [formControl]="userInput_argon2">
                 </mat-form-field>
 
-                <!-- Arrow icon -->
-                <mat-icon class="arrow-icon">arrow_right_alt</mat-icon>
-                
-                <!-- Adding spacing -->
-                <span style="padding-left: 30px;"></span>
-
-                {{this.userInput_argon2.value}}
             </p>
-            <button mat-raised-button (click)="encryptToArgon" class="form-button">Convert!</button>
+            <button mat-raised-button (click)="encryptToArgon()" class="form-button">Convert!</button>
+            <p style="overflow: auto; word-wrap: break-word;">
+                {{this.toArgonResult}}
+            </p>
             <mat-card-content>
                 <p>
-                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                    bred for hunting.
+                    Argon2 is a password hashing function designed to have a high memory filling
+                    rate, while also being effective against tradeoff attacks (ex. cache and memory
+                    organization exploitation). This password hashing function was the winner of the 
+                    <a href="https://en.wikipedia.org/wiki/Password_Hashing_Competition" target="_blank">
+                    Password Hashing Competition</a> 
+                    in July 2015. To learn more about Argon2 and its varients, please visit their 
+                    <a href="https://en.wikipedia.org/wiki/Argon2" target="_blank">Wikipedia</a>
+                    To view their Github and see how the algorithm works, please click 
+                    <a href="https://github.com/P-H-C/phc-winner-argon2" target="_blank">here.</a>
                 </p>
             </mat-card-content>
         </mat-card>

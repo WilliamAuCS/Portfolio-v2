@@ -23,10 +23,12 @@ export class SandboxComponent implements OnInit {
   }
 
   encryptToArgon() {
-    this.http.post<{ result: string }>(this._toArgonUrl, this.userInput_argon2)
+    console.log(this.userInput_argon2.value)
+    this.http.post<{ result: string }>(this._toArgonUrl, {text: this.userInput_argon2.value})
     .subscribe(
       res => { this.toArgonResult = res.result; },
-      err => { 
+      err => 
+      { 
         console.error(err);
         this.toArgonResult = "An error has occured";
       }
