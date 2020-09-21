@@ -79,7 +79,7 @@ export class SandboxComponent implements OnInit {
 
 
   // private _encryptUrl = "http://localhost:8080/api/encrypt/";
-  private _encryptUrl = "http://35.230.35.110:8080/api/encrypt/";
+  private _encryptUrl = "https://server.makosusa.com:8080/api/encrypt/";
 
   constructor(
     private http: HttpClient,
