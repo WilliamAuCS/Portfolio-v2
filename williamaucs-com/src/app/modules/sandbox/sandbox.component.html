@@ -1,11 +1,11 @@
 <div class="background fade-in-soft">
     <h1 style="font-size: 400%; color: white; margin: 5% 0 0 5%;">Sandbox</h1>
     <div class="sandbox-container">
-        <mat-card class="card-item">
+        <mat-card class="card-item" *ngFor="let element of encryption">
             <mat-card-header>
                 <div mat-card-avatar class="encryption-image"></div>
                 <mat-card-title>Encryption</mat-card-title>
-                <mat-card-subtitle>Argon2i</mat-card-subtitle>
+                <mat-card-subtitle>{{element.subtitle}}</mat-card-subtitle>
             </mat-card-header>
             <p>
                 <!-- Adding spacing -->
@@ -13,26 +13,15 @@
                 <!-- Input form field -->
                 <mat-form-field style="width: 30%;" appearance="standard">
                     <mat-label>Enter Input</mat-label>
-                    <input matInput placeholder="Enter string" type="text" [formControl]="userInput_argon2">
+                    <input matInput placeholder="Enter string" type="text" [formControl]="element.input_control">
                 </mat-form-field>
 
             </p>
-            <button mat-raised-button (click)="encryptToArgon()" class="form-button">Convert!</button>
+            <button mat-raised-button (click)="encrypt(element.subtitle)" class="form-button">Convert!</button>
             <p style="overflow: auto; word-wrap: break-word;">
-                {{this.toArgonResult}}
+                {{element.result}}
             </p>
-            <mat-card-content>
-                <p>
-                    Argon2 is a password hashing function designed to have a high memory filling
-                    rate, while also being effective against tradeoff attacks (ex. cache and memory
-                    organization exploitation). This password hashing function was the winner of the 
-                    <a href="https://en.wikipedia.org/wiki/Password_Hashing_Competition" target="_blank">
-                    Password Hashing Competition</a> 
-                    in July 2015. To learn more about Argon2 and its varients, please visit their 
-                    <a href="https://en.wikipedia.org/wiki/Argon2" target="_blank">Wikipedia</a>
-                    To view their Github and see how the algorithm works, please click 
-                    <a href="https://github.com/P-H-C/phc-winner-argon2" target="_blank">here.</a>
-                </p>
+            <mat-card-content [innerHTML]="element.content">
             </mat-card-content>
         </mat-card>
     </div>
