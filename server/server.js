@@ -13,7 +13,7 @@ const certificate = fs.readFileSync('/etc/letsencrypt/live/server.makosusa.com/c
 const credentials = {key: privateKey, cert: certificate};
 
 const corsOptions = {
-    origin: 'https://www.williamaucs.com', 
+    origin: ['https://www.williamaucs.com', 'https://williamaucs.com'], 
     optionsSuccessStatus: 200
 }
 
