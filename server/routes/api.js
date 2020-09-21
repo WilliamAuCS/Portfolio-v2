@@ -9,16 +9,24 @@ router.get('/', (req, res) => {
     res.send("From API route");
 });
 
-router.post('/', (req, res) => {
-    encryptToArgon(req.body)
+// Post request to encrypt string
+router.post('/toArgon', (req, res) => {
+    let data = req.body;
+    encryptToArgon(data.text, (hashed) => {
+        if(hashed == "error") {
+            res.status(500).send("Server error");
+            return;
+        }
+        res.status(200).send({ result: hashed });
+    })
+
 });
 
-function encryptToArgon(toHash) {
-    let afterHash;
+// Encrypting string using Argon2i
+function encryptToArgon(toHash, callback) {
     argon2.hash(toHash).then((hashed) => {
-        afterHash = hashed;
+        callback(hashed);
     });
-    return afterHash;
 }
 
 module.exports = router;

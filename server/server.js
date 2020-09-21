@@ -7,13 +7,14 @@ const api = require('./routes/api');
 const app = express();
 
 const corsOptions = {
-    origin: 'https://makosusa.com', 
+    origin: 'http://localhost:4200', 
     optionsSuccessStatus: 200
 }
 app.use(bodyParser.json());
+app.use(cors(corsOptions));
 
 app.use('/api', api);
-app.get('/', cors(corsOptions), function(req, res) {
+app.get('/', function(req, res) {
     res.send("hello from server")
 });
 
