@@ -17,10 +17,50 @@
     margin: 20% 0 0 9%;
     background: transparent;
 }
+.name-container h1 {
+    font-size: 800%;
+    background: transparent;
+}
+.name-container h2 {
+    font-size: 320%;
+    background: transparent;
+}
+
+.links {
+    margin-top: 25px;
+    background: transparent;
+}
 
 .links a {
     color: inherit; 
     margin-right: 235px;
     text-decoration: none;
     background: transparent;
+}
+
+
+@media (max-width: 500px) {
+    #portrait-img {
+        height: 900px;
+        right: -20%;
+        top: 10%;
+    }
+    .name-container {
+        top: 55%;
+        margin: 0;
+        padding: 0 5px 0 5px;
+        text-align: center;
+    }
+    .name-container h1{
+        font-size: 19vw;
+    }
+    .name-container h2 {
+        font-size: 7.5vw;
+    }
+    .name-container .links a{
+        margin: 0 25% 0 0;
+    }
+    #right-link {
+        margin: 0;
+    }
 }
