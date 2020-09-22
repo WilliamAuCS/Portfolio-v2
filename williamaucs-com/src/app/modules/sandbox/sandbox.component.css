@@ -25,6 +25,7 @@
 .form-button {
     left: 130px;
     bottom: 20px;
+    outline: none;
 }
 
 p a {

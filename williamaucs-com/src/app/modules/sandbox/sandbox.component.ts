@@ -17,34 +17,35 @@ interface encryption_array {
 export class SandboxComponent implements OnInit {
 
   public argon2_content: string = "<p>\
-  Argon2 is a password hashing function designed to have a high memory filling\
+  Argon2 is one of my favorite password hashing functions. It designed to have a high memory filling\
   rate, while also being effective against tradeoff attacks (ex. cache and memory\
-  organization exploitation). This password hashing function was the winner of the \
-  <a href='https://en.wikipedia.org/wiki/Password_Hashing_Competition' target='_blank'>\
-  Password Hashing Competition</a>\
-  in July 2015. To learn more about Argon2 and its varients, please visit their\
-  <a href='https://en.wikipedia.org/wiki/Argon2' target='_blank'>Wikipedia</a>\
+  organization exploitation). This example takes the input above and sends the data \
+  over https to a VM over hosted by GCP. My server (Node.js) accepts this data, encrypts \
+  it and uses a callback function to return it to the front-end as an observable. The response \
+  is then displayed back to the user using *ngFor through an object. <br><br>\
+  To learn more about Argon2 and its varients, please visit their\
+  <a href='https://en.wikipedia.org/wiki/Argon2' target='_blank'>Wikipedia.</a>\
   To view their Github and see how the algorithm works, please click\
   <a href='https://github.com/P-H-C/phc-winner-argon2' target='_blank'>here.</a>\
   </p>";
 
-  public bcrypt_content: string = "bcrypt, a password-hashing function presented at USENIX in 1999, \
-  was based on the commonly known Blowfish cipher. This hashing function incorperates a salt, preventing\
-  against <a href='https://en.wikipedia.org/wiki/Rainbow_table' target='_blank'>rainbow table</a> attacks, \
-  as well as options to slow down the function to resist brute-force search attacks. bcrypt is the \
-  default password hashing algorithm for OpenBSD as well as other systems including Linux. \
-  To learn more about bcrypt and how it got its vast popularity, please visit their \
+  public bcrypt_content: string = "bcrypt was previously my go-to password-hashing function. Although presented in 1999, \
+  this hashing function remains secure to this day. This algorithm is unique because it is an adaptive function; \
+  as computation power increases, the iteration count can be increased to resist brute-force search attacks. \
+  Similar to Argon2, the content of the input above is sent to a VM, encrypted, then returned as an observable. \
+  <br><br>To learn more about bcrypt and how it got its vast popularity, please visit their \
   <a href='https://en.wikipedia.org/wiki/Bcrypt' target='_blank'>Wikipedia.</a> To view their \
   Github and see how the algorithm works, please click \
   <a href='https://github.com/kelektiv/node.bcrypt.js/' target='_blank'>here.</a>\
   </p>";
 
-  public scrypt_content: string = "scrypt is a password-based key derivation function created \
-  for <a href='https://en.wikipedia.org/wiki/Tarsnap' target='_blank'>Tarsnap</a> backup service. \
-  This algorithm was specifically created to ensure large-scale custom hardware attacks were costly \
-  to the attackers, requiring them to use large amounds of memory. This function was published by \
-  <a href='https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force' target='_blank'>IETF</a> \
-  in 2016. To learn more about the efficiency and <q>upgrades</q> scrypt has over its predecessor bcrypt, \
+  public scrypt_content: string = "I have used scrypt a few times for password-hashing, however \
+  its <q>predecessor</q>, bcrypt, was always preferable. scrypt was created specifically \
+  to ensure large-scale custom hardware attacks were costly \
+  to attackers, requiring a large amount of memory. In my experience, I preferred bcrypt because of \
+  its known reliability. scrypt has claimed to be <q>better</q> than bcrypt, however because of its newness \
+  it has also received less scrutiny. <br><br>\
+  To learn more about the efficiency and <q>upgrades</q> scrypt has over its predecessor bcrypt, \
   please visit their <a href='https://en.wikipedia.org/wiki/Scrypt' target='_blank'>Wikipedia.</a> \
   To view their Github and see how the algorithm works, please click \
   <a href='https://github.com/barrysteyn/node-scrypt' target='_blank'> here.</a>\
