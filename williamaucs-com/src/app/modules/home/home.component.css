@@ -3,6 +3,7 @@
     position: fixed;
     height: 100%;
     width: 100%;
+    /* border: 1px solid red; */
 }
 
 #portrait-img {
@@ -38,6 +39,36 @@
     background: transparent;
 }
 
+/* Replaces toolbar with dropdown if screen width is insufficient */
+
+/* Tablets  */
+@media (max-width: 960px) {
+    #portrait-img {
+        height: 1000px;
+        right: 11%;
+        top: 10%;
+    }
+    .name-container {
+        top: 55%;
+        margin: 0;
+        padding: 0 5px 0 5px;
+        text-align: center;
+    }
+    .name-container h1{
+        font-size: 17vw;
+    }
+    .name-container h2 {
+        font-size: 6.5vw;
+    }
+    .name-container .links a{
+        margin: 0 30% 0 0;
+    }
+    #right-link {
+        margin: 0;
+    }
+}
+
+/* Hand-held mobile devices  */
 
 @media (max-width: 500px) {
     #portrait-img {
@@ -64,3 +95,4 @@
         margin: 0;
     }
 }
+

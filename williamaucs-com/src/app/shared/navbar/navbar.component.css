@@ -28,9 +28,6 @@ mat-toolbar {
     outline: none;
 }
 
-mat-sidenav-container {
-    height: 100%;
-}
 
 mat-sidenav {
     display: none;
@@ -45,6 +42,13 @@ mat-sidenav a {
 
 /* Replaces toolbar with dropdown if screen width is insufficient */
 
+@media (max-width: 960px) {
+    mat-sidenav-container {
+        /* height: calc(100% - 128px); */
+    }
+}
+
+/* Hand-held mobile devices  */
 @media (max-width: 500px) {
     .nav-desktop {
         display: none;
@@ -54,5 +58,11 @@ mat-sidenav a {
     }
     mat-sidenav, mat-sidenav a{
         display: block;
+    }
+    mat-sidenav {
+        margin-top: 56px;
+    }
+    mat-sidenav-container {
+        /* height: calc(100% - 0%); */
     }
 }
