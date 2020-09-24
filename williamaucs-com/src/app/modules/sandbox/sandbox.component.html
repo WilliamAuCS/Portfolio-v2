@@ -1,29 +1,30 @@
-<div class="fade-in-soft">
-    <h1 style="font-size: 400%; color: white; margin: 5% 0 0 5%;">Sandbox</h1>
-    <div class="sandbox-container">
-        <mat-card class="card-item" *ngFor="let element of encryption">
-            <mat-card-header>
-                <div mat-card-avatar class="encryption-image"></div>
-                <mat-card-title>Encryption</mat-card-title>
-                <mat-card-subtitle>{{element.subtitle}}</mat-card-subtitle>
-            </mat-card-header>
-            <p>
-                <!-- Adding spacing -->
-                <span style="padding-left: 120px;"></span>
-                <!-- Input form field -->
-                <mat-form-field style="width: 30%;" appearance="standard">
-                    <mat-label>Enter Input</mat-label>
-                    <input matInput placeholder="Enter string" type="text" [formControl]="element.input_control">
-                </mat-form-field>
+<div class="background">
+    <div class="fade-in-soft">
+        <h1 style="font-size: 400%; color: white; margin: 5% 0 0 5%;">Sandbox</h1>
+        <div class="sandbox-container">
+            <mat-card class="card-item" *ngFor="let element of encryption">
+                <mat-card-header>
+                    <div mat-card-avatar class="encryption-image"></div>
+                    <mat-card-title>Encryption</mat-card-title>
+                    <mat-card-subtitle>{{element.subtitle}}</mat-card-subtitle>
+                </mat-card-header>
+                <p style="margin: 0;">
+                    <!-- Adding spacing -->
+                    <span style="padding-left: 120px;"></span>
+                    <!-- Input form field -->
+                    <mat-form-field style="width: 30%;" appearance="standard">
+                        <mat-label>Enter Input</mat-label>
+                        <input matInput placeholder="Enter string" type="text" [formControl]="element.input_control">
+                    </mat-form-field>
 
-            </p>
-            <button mat-raised-button (click)="encrypt(element.subtitle)" class="form-button">Convert!</button>
-            <p style="overflow: auto; word-wrap: break-word;">
-                {{element.result}}
-            </p>
-            <mat-card-content [innerHTML]="element.content">
-            </mat-card-content>
-        </mat-card>
+                </p>
+                <button mat-raised-button (click)="encrypt(element.subtitle)" class="form-button">Convert!</button>
+                <p style="overflow: auto; word-wrap: break-word;">
+                    {{element.result}}
+                </p>
+                <mat-card-content [innerHTML]="element.content">
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>
-
