@@ -1,8 +1,10 @@
 .background {
     background-color: black;
-    position: absolute;
+    position: relative;
+    /* height: 100%; */
+    /* width: 100%; */
+    /* border: 1px solid red; */
 }
-
 .projects-container {
     color: white;
 }
@@ -52,4 +54,50 @@
 
 .project-summery-second {
     margin: 5% 0 0 20%;
+}
+
+#project-name {
+    color: inherit
+}
+
+#mobile-view {
+    display: none;
+}
+
+/* Replaces toolbar with dropdown if screen width is insufficient */
+
+@media (max-width: 960px) {
+    .page-header {
+        font-size: 8vw;
+    }
+    #mobile-view {
+        display: block;
+        margin: 5% 0 0 0;
+        font-size: 4vw;
+        text-align: center;
+    }
+    .project-item {
+        flex-direction: column;
+        padding: 25px;
+        margin: 0% 0 5% 0;
+        height: auto;
+        width: 100%;
+        float: right;
+    }
+    .project-summery-first, .project-summery-second{
+        display: none;
+    }
+    .project-description-first, .project-description-second {
+        margin: 5% 0 0 0;
+        width: 100%;
+        height: auto;
+        /* border: 1px solid red; */
+    }
+    img {
+        display: none;
+    }
+    #makosusa-description a{
+        display: flex;
+        flex-direction: column;
+    }
 }

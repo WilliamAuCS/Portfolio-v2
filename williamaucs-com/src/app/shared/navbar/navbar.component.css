@@ -1,3 +1,6 @@
+.nav-desktop {
+    display: block;
+}
 .navigation-bar {
     padding-top: 8%;
     display: flex;
@@ -19,15 +22,14 @@ a.nav-link {
     margin-left: 5%;
 }
 
-mat-toolbar {
-    display: none;
-}
-
 #dropdown-button {
     margin: 10px 0 0 0;
     outline: none;
 }
 
+mat-toolbar {
+    display: none;
+}
 
 mat-sidenav {
     display: none;
@@ -40,29 +42,28 @@ mat-sidenav a {
     padding: 10px 0;
 }
 
-/* Replaces toolbar with dropdown if screen width is insufficient */
-
-@media (max-width: 960px) {
-    mat-sidenav-container {
-        /* height: calc(100% - 128px); */
-    }
+mat-sidenav-container {
+    display: none;
 }
 
+/* Replaces toolbar with dropdown if screen width is insufficient */
+
 /* Hand-held mobile devices  */
-@media (max-width: 500px) {
+
+@media (max-width: 625px) {
     .nav-desktop {
         display: none;
     }
     mat-toolbar {
         display: flex;
     }
-    mat-sidenav, mat-sidenav a{
+    mat-sidenav, mat-sidenav a {
         display: block;
     }
     mat-sidenav {
         margin-top: 56px;
     }
     mat-sidenav-container {
-        /* height: calc(100% - 0%); */
+        display: block;
     }
 }

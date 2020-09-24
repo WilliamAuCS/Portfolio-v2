@@ -1,14 +1,13 @@
+.background {
+    position: relative;
+    /* height: 100%; */
+    /* width: 100%; */
+    /* border: 1px solid red; */
+}
 .sandbox-container {
     color: white;
     margin: 2% 5% 0 5%;
     display: flex;
-    /* border: 1px solid red; */
-}
-
-.page-header {
-    padding-top: 7%;
-    font-size: 350%;
-    margin: 5% 0 0 5%;
 }
 
 .card-item {
@@ -22,13 +21,50 @@
     background-size: cover;
 }
 
+p mat-form-field {
+    display: block;
+    margin: 0 auto 0 auto;
+}
+
+
+
 .form-button {
-    left: 130px;
-    bottom: 20px;
+    display: block;
+    margin: 0 auto 0 auto;
     outline: none;
+    margin-bottom: 3%;
 }
 
 p a {
     text-decoration: none;
 }
 
+@media (max-width: 960px) {
+    .sandbox-container {
+        color: white;
+        margin: 2% 5% 0 5%;
+        display: flex;
+        flex-direction: column;
+    }
+    .card-item {
+        margin: 0 auto 3% auto;
+    }
+    mat-label {
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 500px) {
+    .sandbox-container {
+        color: white;
+        margin: 2% 3% 0 3%;
+        display: flex;
+        flex-direction: column;
+    }
+    .card-item {
+        margin: 0 auto 3% auto;
+    }
+    mat-label {
+        font-size: 4vw;
+    }
+}
