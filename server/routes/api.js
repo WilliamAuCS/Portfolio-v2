@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/user.js');
 
 
 // Response from /api
@@ -65,6 +66,42 @@ function encryptToscrypt(toHash, callback) {
         callback(hashed);
     });
 }
+
+router.post('/register', (req, res) => {
+
+    // Extracting user data from request object
+    let userData = req.body;
+
+    if(User.findOne({ username: userData.username }, (err, response) => {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        else if(response) {
+            res.status(409).send("Username in use");
+            return;
+        }
+        else {
+            AddUser();
+        }
+    }))
+
+    function AddUser() {
+        let user = new User(userData);
+
+        encryptToArgon(user.password, (hashed) => {
+            user.password = hashed;
+            user.save((err, registeredUser) => {
+                if(err) {
+                    console.error(err);
+                }
+                else {
+                    res.status(200).send({ response: "Success" });
+                }
+            });
+        });
+    };
+});
 
 
 module.exports = router;
