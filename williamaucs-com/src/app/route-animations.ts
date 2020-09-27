@@ -9,7 +9,8 @@ import {
 } from '@angular/animations';
 
 export const slider = 
-    trigger('routeAnimations', [
+    trigger('routeAnimations', 
+        [
         
         // Slide to right
         transition('home => projects', slideTo('right')),
