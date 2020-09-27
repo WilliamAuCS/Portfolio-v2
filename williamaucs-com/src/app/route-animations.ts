@@ -25,10 +25,6 @@ export const slider =
     ]);
 
 function slideTo(direction) {
-
-    // if(no_animate == false) {
-    //     return;
-    // }
     const optional = { optional: true };
     return [
         query(':enter, :leave', [
