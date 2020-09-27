@@ -1,23 +1,26 @@
 .background {
     position: relative;
-    /* height: 100%; */
-    /* width: 100%; */
-    /* border: 1px solid red; */
 }
+
 .sandbox-container {
     color: white;
     margin: 2% 5% 0 5%;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .card-item {
-    max-width: 400px;
-    min-width: 350px;
-    margin: 0 8% 0 7%;
+    width: 400px;
+    margin: 0 8% 3% 7%;
 }
 
 .encryption-image {
-    background-image: url('/assets/encryption-image.png');
+    background-image: url('/assets/encryption_image.png');
+    background-size: cover;
+}
+
+.mongodb-image {
+    background-image: url('/assets/mongodb_image.png');
     background-size: cover;
 }
 
@@ -26,13 +29,23 @@ p mat-form-field {
     margin: 0 auto 0 auto;
 }
 
-
+form mat-form-field {
+    width: 30%;
+    float: left;
+    margin: 0 auto 0 auto;
+}
 
 .form-button {
     display: block;
     margin: 0 auto 0 auto;
     outline: none;
     margin-bottom: 3%;
+}
+
+.form-wrapper {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 p a {

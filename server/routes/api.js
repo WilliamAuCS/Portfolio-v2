@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
+const validator = require('validator');
 
 
 // Response from /api
@@ -67,10 +68,24 @@ function encryptToscrypt(toHash, callback) {
     });
 }
 
+function sanitizeUsername(username) {
+    console.log(username)
+    if(username) {
+        return validator.isAscii(username);
+    }
+    return false;
+}
+
 router.post('/register', (req, res) => {
 
     // Extracting user data from request object
     let userData = req.body;
+
+    // Username sanitation with ascii
+    if(!sanitizeUsername(userData.username)) {
+        res.status(400).send("Invalid Username Format");
+        return;
+    }
 
     if(User.findOne({ username: userData.username }, (err, response) => {
         if(err) {
