@@ -7,6 +7,7 @@ import { ContactComponent } from './modules/contact/contact.component';
 import { ModulesModule } from './modules/modules.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { PlatformModule } from '@angular/cdk/platform';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
     ModulesModule, 
     SharedModule, 
     BrowserAnimationsModule, 
+    PlatformModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

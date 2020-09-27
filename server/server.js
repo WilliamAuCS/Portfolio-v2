@@ -27,6 +27,11 @@ app.get('/', function(req, res) {
     res.send("hello from server")
 });
 
+// FOR TESTING PURPOSES ONLY
+// app.listen(PORT, () => {
+//     console.log("Server running with https on port:" + PORT)
+// });
+
 httpsServer.listen(PORT, function() {
     console.log("Server running with https on port:" + PORT)
 });

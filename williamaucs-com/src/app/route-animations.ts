@@ -9,7 +9,8 @@ import {
 } from '@angular/animations';
 
 export const slider = 
-    trigger('routeAnimations', [
+    trigger('routeAnimations', 
+        [
         
         // Slide to right
         transition('home => projects', slideTo('right')),
@@ -25,10 +26,6 @@ export const slider =
     ]);
 
 function slideTo(direction) {
-
-    // if(no_animate == false) {
-    //     return;
-    // }
     const optional = { optional: true };
     return [
         query(':enter, :leave', [

@@ -1,13 +1,8 @@
 <app-navbar>
 
     <!-- Enable desktop view (page animations) -->
-    <main *ngIf="this.is_mobile === false" [@routeAnimations]="prepareRoute(outlet)" class="content">
+    <main [@.disabled]="platform.IOS || platform.ANDROID" [@routeAnimations]="prepareRoute(outlet)" class="content">
         <router-outlet #outlet="outlet"></router-outlet>
-    </main>
-
-    <!-- Enable mobile view (remove page animations) -->
-    <main *ngIf="this.is_mobile === true">
-        <router-outlet></router-outlet>
     </main>
 
 </app-navbar>
