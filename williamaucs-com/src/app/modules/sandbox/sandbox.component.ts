@@ -138,13 +138,13 @@ export class SandboxComponent implements OnInit {
   ]
 
   // FOR PRODUCTION PURPOSES ONLY
-  private _encryptUrl = "http://localhost:8080/api/encrypt";
-  private _registerUrl = "http://localhost:8080/api/register";
-  private _loginUrl = "http://localhost:8080/api/login";
+  // private _encryptUrl = "http://localhost:8080/api/encrypt";
+  // private _registerUrl = "http://localhost:8080/api/register";
+  // private _loginUrl = "http://localhost:8080/api/login";
 
-  // private _encryptUrl = "https://server.makosusa.com:8080/api/encrypt/";
-  // private _registerUrl = "https://server.makosusa.com:8080/api/register";
-  // private _loginUrl = "https://server.makosusa.com:8080/api/login";
+  private _encryptUrl = "https://server.makosusa.com:8080/api/encrypt/";
+  private _registerUrl = "https://server.makosusa.com:8080/api/register";
+  private _loginUrl = "https://server.makosusa.com:8080/api/login";
 
   constructor(
     private http: HttpClient,
