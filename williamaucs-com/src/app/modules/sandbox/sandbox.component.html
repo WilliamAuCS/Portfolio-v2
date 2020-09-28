@@ -26,14 +26,14 @@
                 </mat-card-content>
             </mat-card>
 
-            <mat-card class="card-item">
+            <mat-card class="card-item" *ngFor="let elements of registration">
                 <mat-card-header>
                     <div mat-card-avatar class="mongodb-image"></div>
                     <mat-card-title>MongoDB</mat-card-title>
-                    <mat-card-subtitle>Registration</mat-card-subtitle>
+                    <mat-card-subtitle>{{elements.subtitle}}</mat-card-subtitle>
                 </mat-card-header>
                 <!-- User Credentials Input -->
-                <form class="form-wrapper" [formGroup]="userInput_register">
+                <form class="form-wrapper" [formGroup]="elements.input_control">
 
                     <!-- Input form field -->
                     <mat-form-field appearance="standard">
@@ -45,12 +45,13 @@
                         <mat-label>Password</mat-label>
                         <input matInput placeholder="Password" formControlName="password" type="password" required>
                     </mat-form-field>
-                    <p *ngIf="this.register_error == true" style="margin: 0 auto 15px auto; color: red">
-                        {{this.register_error_response}}
+                    
+                    <button mat-raised-button (click)="this.authenticateUser(elements.funct)" class="form-button">{{elements.button_name}}</button>
+                    <p *ngIf="elements.action_error == true" style="margin: 0 auto 15px auto; color: red">
+                        {{elements.action_error_message}}
                     </p>
-                    <button mat-raised-button (click)="registerUser()" class="form-button">Register</button>
                 </form>
-                <mat-card-content [innerHTML]="register_content">
+                <mat-card-content [innerHTML]="elements.content">
                 </mat-card-content>
             </mat-card>
         </div>
