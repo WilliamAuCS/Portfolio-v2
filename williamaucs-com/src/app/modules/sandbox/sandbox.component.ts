@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 interface encryption_array {
@@ -7,6 +7,16 @@ interface encryption_array {
   input_control: FormControl,
   result: String,
   content: String
+}
+
+interface regristration_array {
+  subtitle: string,
+  input_control: FormGroup,
+  button_name: string,
+  funct: string,
+  content: string,
+  action_error: boolean,
+  action_error_message: string,
 }
 
 @Component({
@@ -60,14 +70,28 @@ export class SandboxComponent implements OnInit {
   When the user clicks <q>Register</q>, a light sanitation is done to ensure the minimum requirements are met. The \
   input is then sent as a POST request to the server, which then sanitizes the username further, encrypts the password, then \
   uses Mongoose to send the information to MongoDB. There are many other databases I could have chosen from, including a SQL relational \
-  database, however the json format of the non-relational MongoDB suits this purpose very well.</p>"
+  database, however the json format of the non-relational MongoDB suits this purpose very well.</p>";
+
+  public login_content: string = "<p>\
+  Many perceive the login process as simple compared to its registration counterpart, however I believe it requires \
+  more attention. Similar to registration, a form group accepts the user input. It is then sent as a POST request to the \
+  server, which sanitizes it, then checks to see if the username exists within the database and returns the result. If authentication \
+  ended here, the login process would be considerably easier, however it is only the first step to authentication.</p>"
 
   // Initializing FormControls
   public userInput_argon2: FormControl = new FormControl('');
   public userInput_bcrypt: FormControl = new FormControl('');
   public userInput_scrypt: FormControl = new FormControl('');
 
-  public userInput_register: FormGroup;
+  // Initializing user input variables
+  public userInput_register: FormGroup = this.fb.group({
+    username: ["", Validators.required],
+    password: ["", Validators.required],
+  });
+  public userInput_login: FormGroup = this.fb.group({
+    username: ["", Validators.required],
+    password: ["", Validators.required],
+  });
 
   // Encryption array for *ngFor
   public encryption: encryption_array[] = [
@@ -91,16 +115,36 @@ export class SandboxComponent implements OnInit {
     }
   ]
 
-  // Variables assisting error response
-  public register_error = false;
-  public register_error_response = "";
+  // Registration array for *ngFor
+  public registration: regristration_array[] = [
+    {
+      subtitle: "Registration",
+      input_control: this.userInput_register,
+      button_name: "Register",
+      funct: "register",
+      content: this.register_content,
+      action_error: false,
+      action_error_message: ""
+    },
+    {
+      subtitle: "Login",
+      input_control: this.userInput_login,
+      button_name: "Login",
+      funct: "login",
+      content: this.login_content,
+      action_error: false,
+      action_error_message: ""
+    }
+  ]
 
   // FOR PRODUCTION PURPOSES ONLY
-  // private _encryptUrl = "http://localhost:8080/api/encrypt";
-  // private _registerUrl = "http://localhost:8080/api/register";
+  private _encryptUrl = "http://localhost:8080/api/encrypt";
+  private _registerUrl = "http://localhost:8080/api/register";
+  private _loginUrl = "http://localhost:8080/api/login";
 
-  private _encryptUrl = "https://server.makosusa.com:8080/api/encrypt/";
-  private _registerUrl = "https://server.makosusa.com:8080/api/register";
+  // private _encryptUrl = "https://server.makosusa.com:8080/api/encrypt/";
+  // private _registerUrl = "https://server.makosusa.com:8080/api/register";
+  // private _loginUrl = "https://server.makosusa.com:8080/api/login";
 
   constructor(
     private http: HttpClient,
@@ -108,11 +152,7 @@ export class SandboxComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Initializing register_user group
-    this.userInput_register = this.fb.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required],
-    });
+
   }
 
   // Change to just "encrypt() with type in parameter. Then send to server to figure out type"
@@ -156,27 +196,56 @@ export class SandboxComponent implements OnInit {
 
   }
 
-  registerUser() {
-    if(/\s/.test(this.userInput_register.value.username)) {
-      this.register_error = true;
-      this.register_error_response = "Username must not contain whitespace"
-      return;
-    }
-    if (this.userInput_register.value.password != "" && this.userInput_register.value.username != "") {
-      this.http.post<{ response: string }>(this._registerUrl, this.userInput_register.value)
-        .subscribe(
-          res => {
-            console.log("Success!");
-            this.register_error = false;
-          },
-          err => {
-            console.error(err);
-            if (err.error == "Username in use") {
-              this.register_error = true;
-              this.register_error_response = "Username already in use";
+  authenticateUser(process) {
+
+    if (process == "register") {
+      if (this.userInput_register.value.password != "") {
+        if (/\s/.test(this.userInput_register.value.username)) {
+          this.registration[0].action_error = true;
+          this.registration[0].action_error_message = "Username must not contain whitespace"
+          return;
+        }
+        this.http.post<{ response: string }>(this._registerUrl, this.userInput_register.value)
+          .subscribe(
+            res => {
+              this.registration[0].action_error = true;
+              this.registration[0].action_error_message = "Success!";
+            },
+            err => {
+              console.error(err);
+              if (err.error == "Username in use") {
+                this.registration[0].action_error = true;
+                this.registration[0].action_error_message = "Username already in use";
+              }
             }
-          }
-        )
+          )
+      }
+    }
+    else if (process == "login") {
+      if (this.userInput_login.value.password != "") {
+        if (/\s/.test(this.userInput_login.value.username)) {
+          this.registration[1].action_error = true;
+          this.registration[1].action_error_message = "Username must not contain whitespace"
+          return;
+        }
+        this.http.post<{ response: string }>(this._loginUrl, this.userInput_login.value)
+          .subscribe(
+            res => {
+              this.registration[1].action_error = true;
+              this.registration[1].action_error_message = "Success!";
+            },
+            err => {
+              console.error(err);
+              this.registration[1].action_error = true;
+              if (err.error == "Account not found") {
+                this.registration[1].action_error_message = "Account not found";
+              }
+              else {
+                this.registration[1].action_error_message = "An error has occured";
+              }
+            }
+          )
+      }
     }
   }
 
