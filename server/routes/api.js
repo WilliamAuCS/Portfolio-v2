@@ -86,6 +86,7 @@ router.post('/register', (req, res) => {
         res.status(400).send("Invalid Username Format");
         return;
     }
+    userData.username = userData.username.toLowerCase();
 
     if(User.findOne({ username: userData.username }, (err, response) => {
         if(err) {
@@ -117,6 +118,44 @@ router.post('/register', (req, res) => {
         });
     };
 });
+
+router.post('/login', (req, res) => {
+    // Extracting user data from request object
+    let userData = req.body;
+
+    // Username sanitation with ascii
+    if(!sanitizeUsername(userData.username)) {
+        res.status(400).send("Invalid Username Format");
+        return;
+    }
+    userData.username = userData.username.toLowerCase();
+
+    User.findOne({ username: userData.username }, (err, user) => {
+        if(err) {
+            console.error(err);
+        }
+        else {
+            if(!user) {
+                res.status(401).send("Invalid credentials");
+            }
+            else {
+                try {
+                    argon2.verify(user.password, userData.password).then(argon2Match => {
+                        if(argon2Match) {
+                            res.status(200).send({ response: "Success!"});
+                        }
+                        else {
+                            res.status(401).send("Invalid credentials");
+                        }
+                    })
+                }
+                catch (err) {
+                    console.error(err);
+                }
+            }
+        }
+    })
+})
 
 
 module.exports = router;
