@@ -7,12 +7,18 @@
     margin: 2% 5% 0 5%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .card-item {
-    width: 400px;
-    margin: 0 5% 3% 5%;
+    max-width: 400px;
+    min-width: 350px;
+    margin: 0 0 5% 0;
 }
+
+/* ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: transparent !important;
+} */
 
 .encryption-image {
     background-image: url('/assets/encryption_image.png');
