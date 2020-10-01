@@ -1,15 +1,21 @@
 /* Bootstrap 4 */
 
 @import "~bootstrap/dist/css/bootstrap.css";
-
 main {
   position: relative;
 }
+
 ::-webkit-scrollbar {
   width: 0px;
 }
+
 * {
   scrollbar-width: none;
+}
+
+/* Removing gray background when sidebar is open */
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: transparent !important;
 }
 
 /* Animation */
@@ -110,5 +116,9 @@ mat-sidenav-content {
 }
 
 /* ---Underline Animation--- */
-html, body { height: 100%; }
+
+html, body {
+  height: 100%;
+}
+
 /* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
