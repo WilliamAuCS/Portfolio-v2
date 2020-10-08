@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PhasmophobiaComponent } from './game_modules/phasmophobia/phasmophobia.component';
 import { ContactComponent } from './modules/contact/contact.component';
 
 // Page Components
@@ -12,6 +13,9 @@ const routes: Routes = [
   { path: 'projects', component: ProjectsComponent, data: { animation: 'projects' } }, 
   { path: 'sandbox', component: SandboxComponent, data: { animation: 'sandbox' } }, 
   { path: 'contact', component: ContactComponent }, 
+
+  // game_modules
+  { path: 'phasmophobia', component: PhasmophobiaComponent }, 
   
 ]
 
