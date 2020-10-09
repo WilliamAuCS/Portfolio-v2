@@ -16,10 +16,6 @@
     margin: 0 0 5% 0;
 }
 
-/* ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
-    background-color: transparent !important;
-} */
-
 .encryption-image {
     background-image: url('/assets/encryption_image.png');
     background-size: cover;

@@ -1,0 +1,83 @@
+.background {
+    position: relative;
+}
+
+mat-tab-group {
+    color: white;
+}
+.description-tab {
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+}
+.tab-header {
+    text-align: center;
+    margin-top: 3%;
+}
+.tab-header h2 {
+    font-size: 2.5vw;
+}
+
+.tab-container {
+    margin: 0 5%;
+    margin-top: 40px;
+}
+
+.important-messages {
+    margin-top: 2%;
+    text-align: center;
+}
+
+.container-card {
+    background-color: gray;
+}
+
+.evidence-list {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.checkbox-evidence {
+    margin-right: 30px;
+}
+
+.ghost-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.ghost-card {
+    max-width: 400px;
+    margin: 2%;
+}
+mat-card-header {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.ghost-name {
+    font-size: 180%;
+}
+
+mat-card-content h5 {
+    font-weight: bold;
+}
+
+#information-tab {
+    background-image: url('/assets/phasmophobia/information_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#calculator-tab {
+    background-image: url('/assets/phasmophobia/calculator_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#description-tab {
+    /* background-color: gray; */
+    /* position: fixed;  */
+    height: 100%;
+    width: 100%;
+}
