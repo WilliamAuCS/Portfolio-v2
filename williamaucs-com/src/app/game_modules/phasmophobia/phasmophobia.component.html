@@ -10,13 +10,15 @@
                         <div class="important-messages">
                             <h3 color="warn" style="color: red">WARNING:</h3>
                             <p>
-                                Some may find the following material disturbing. If you do not wish
+                                Some viewers may find the following material disturbing. If you do not wish
                                 to be exposed to the following material, please click away now.
                             </p>
                             <button color="warn" *ngIf="!this.user_agreement" mat-raised-button
                                 (click)="this.agreement()">I Agree</button>
-                            <h5 style="margin-top: 2%">Notice:</h5>
-                            <p>All information provided was gathered from within the game itself. </p>
+                            <div id="notice-message">
+                                <h5>Notice:</h5>
+                                <p>All information provided was gathered from within the game itself. </p>
+                            </div>
                         </div>
                     </div>
                 </div>

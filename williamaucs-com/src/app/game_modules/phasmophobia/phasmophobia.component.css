@@ -5,10 +5,12 @@
 mat-tab-group {
     color: white;
 }
-.description-tab {
+#description-tab {
     width: 100%;
     height: 100%;
-    border: 1px solid red;
+    margin-top: -15px;
+    padding-top: 35px;
+    /* border: 1px solid red; */
 }
 .tab-header {
     text-align: center;
@@ -45,6 +47,7 @@ mat-tab-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    padding: 0;
 }
 
 .ghost-card {
@@ -71,13 +74,40 @@ mat-card-content h5 {
     background-size: cover;
 }
 #calculator-tab {
+    /* position: fixed; */
     background-image: url('/assets/phasmophobia/calculator_background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 76vh;
 }
 #description-tab {
-    /* background-color: gray; */
-    /* position: fixed;  */
-    height: 100%;
-    width: 100%;
+    min-height: 82vh;
+}
+#notice-message {
+    margin-top: 2%;
+}
+
+@media (max-width: 1000px) {
+    .ghost-card {
+        max-width: 300px;
+    }
+}
+
+/* Extra styling for mobile devices */
+@media (max-width: 500px) {
+    .tab-header h2 {
+        font-size: 9vw;
+    }
+    .important-messages {
+        margin-top: 20vh;
+    }
+    #notice-message {
+        margin-top: 20vh;
+    }
+    #information-tab {
+        background-image: none;
+    }
+    .ghost-card {
+        margin: 0 0 3% 0;
+    }
 }

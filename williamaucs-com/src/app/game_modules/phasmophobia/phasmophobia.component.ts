@@ -88,37 +88,33 @@ export class PhasmophobiaComponent implements OnInit {
 
   // Calculates which ghosts match the corresponding evidence
   calculatePossibilities(tr) {
-    if (this.checked_count <= 3) {
-      // If false, reset ghost_possibilities
-      if (tr == false) {
-        this.ghost_possibilities = Array.from(this.ghost_list);
-        this.similar_evidence_copy = Object.assign({}, this.similar_evicence);
-      }
-      // To remove
-      let to_remove = [];
-      // console.log(this.ghost_possibilities.length)
-      // console.log(this.ghost_list)
-      for (let index = 0; index < this.ghost_possibilities.length; index++) {
-        for (let j = 0; j < this.checked_evidence.length; j++) {
-          // If element in ghost_possibilities does NOT have one of the evidence, set to remove
-          if (this.ghost_possibilities[index].evidence.includes(this.checked_evidence[j]) == false) {
-            to_remove.push(index);
-            break;
-          }
+    // If false, reset ghost_possibilities
+    if (tr == false) {
+      this.ghost_possibilities = Array.from(this.ghost_list);
+      this.similar_evidence_copy = Object.assign({}, this.similar_evicence);
+    }
+    // To remove
+    let to_remove = [];
+    for (let index = 0; index < this.ghost_possibilities.length; index++) {
+      for (let j = 0; j < this.checked_evidence.length; j++) {
+        // If element in ghost_possibilities does NOT have one of the evidence, set to remove
+        if (this.ghost_possibilities[index].evidence.includes(this.checked_evidence[j]) == false) {
+          to_remove.push(index);
+          break;
         }
       }
-      // Removing from ghost_possibilities array
-      for (let index = 0; index < to_remove.length; index++) {
-        // Avoids duplicates in to_remove array
-        if (index > 0 && to_remove[index] === to_remove[index - 1]) {
-          continue;
-        }
-        // Removing evidence from similar_evidence_copy
-        for (let j = 0; j < 3; j++) {
-          this.similar_evidence_copy[this.ghost_possibilities[to_remove[index] - index].evidence[j]]--;
-        }
-        this.ghost_possibilities.splice(to_remove[index] - index, 1);
+    }
+    // Removing from ghost_possibilities array
+    for (let index = 0; index < to_remove.length; index++) {
+      // Avoids duplicates in to_remove array
+      if (index > 0 && to_remove[index] === to_remove[index - 1]) {
+        continue;
       }
+      // Removing evidence from similar_evidence_copy
+      for (let j = 0; j < 3; j++) {
+        this.similar_evidence_copy[this.ghost_possibilities[to_remove[index] - index].evidence[j]]--;
+      }
+      this.ghost_possibilities.splice(to_remove[index] - index, 1);
     }
   }
 }
