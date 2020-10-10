@@ -45,7 +45,6 @@ export class PhasmophobiaComponent implements OnInit {
       ghost_information.hasOwnProperty(x) && this.ghost_list.push(ghost_information[x]);
     }
     this.ghost_possibilities = Array.from(this.ghost_list);
-
     // Converting evidence into key array for *ngFor
     for (var ev in this.evidence) {
       if (this.evidence.hasOwnProperty(ev)) {
@@ -89,21 +88,22 @@ export class PhasmophobiaComponent implements OnInit {
 
   // Calculates which ghosts match the corresponding evidence
   calculatePossibilities(tr) {
-
     if (this.checked_count <= 3) {
       // If false, reset ghost_possibilities
       if (tr == false) {
         this.ghost_possibilities = Array.from(this.ghost_list);
         this.similar_evidence_copy = Object.assign({}, this.similar_evicence);
       }
-
       // To remove
       let to_remove = [];
+      // console.log(this.ghost_possibilities.length)
+      // console.log(this.ghost_list)
       for (let index = 0; index < this.ghost_possibilities.length; index++) {
         for (let j = 0; j < this.checked_evidence.length; j++) {
           // If element in ghost_possibilities does NOT have one of the evidence, set to remove
           if (this.ghost_possibilities[index].evidence.includes(this.checked_evidence[j]) == false) {
             to_remove.push(index);
+            break;
           }
         }
       }
