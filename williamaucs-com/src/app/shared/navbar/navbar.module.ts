@@ -17,7 +17,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatSidenavModule, 
     MatToolbarModule,
     MatButtonModule,  
-    LayoutModule, 
   ], 
   exports: [NavbarComponent]
 })
