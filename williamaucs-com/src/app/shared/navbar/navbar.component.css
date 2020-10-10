@@ -51,7 +51,7 @@ mat-sidenav-container {
 /* Hand-held mobile devices  */
 
 @media (max-width: 625px) {
-    .nav-desktop {
+    #nav-desktop {
         display: none;
     }
     mat-toolbar {

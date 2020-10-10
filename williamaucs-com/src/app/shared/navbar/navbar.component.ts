@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   private current_url: string = "";
+
   constructor(private _router: Router) { }
 
   ngOnInit(): void {
