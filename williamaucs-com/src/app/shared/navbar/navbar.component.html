@@ -1,19 +1,19 @@
-<div class="nav-desktop">
+<div id="nav-desktop">
     <ul class="navigation-bar fade-in-soft">
         <span class="gap-between"></span>
         <li class="nav-item">
-            <a class="nav-link underline-anim" [routerLink]="['/']">Home</a>
+            <a class="nav-link underline-anim" (click)="this.checkToReload('/')" [routerLink]="['/']">Home</a>
         </li>
         <span class="gap-between"></span>
         <li class="nav-item">
-            <a class="nav-link underline-anim" [routerLink]="['projects']">Projects</a>
+            <a class="nav-link underline-anim" (click)="this.checkToReload('projects')" [routerLink]="['projects']">Projects</a>
         </li>
         <span class="gap-between"></span>
         <li class="nav-item">
-            <a class="nav-link underline-anim" [routerLink]="['sandbox']">Sandbox</a>
+            <a class="nav-link underline-anim" (click)="this.checkToReload('sandbox')" [routerLink]="['sandbox']">Sandbox</a>
         </li>
         <li class="nav-item ml-auto">
-            <a class="nav-link underline-anim" [routerLink]="['contact']">Contact</a>
+            <a class="nav-link underline-anim" (click)="this.checkToReload('contact')" [routerLink]="['contact']">Contact</a>
         </li>
         <span class="gap-between"></span>
     </ul>

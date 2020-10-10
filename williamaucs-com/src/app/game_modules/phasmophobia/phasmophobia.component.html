@@ -1,0 +1,96 @@
+<div class="background">
+    <div class="fade-in-soft">
+        <mat-tab-group mat-align-tabs="center" animationDuration="1000ms">
+            <mat-tab label="Description">
+                <div id="description-tab">
+                    <div class="tab-header">
+                        <h2>Phasmophobia</h2>
+                    </div>
+                    <div class="tab-container">
+                        <div class="important-messages">
+                            <h3 color="warn" style="color: red">WARNING:</h3>
+                            <p>
+                                Some may find the following material disturbing. If you do not wish
+                                to be exposed to the following material, please click away now.
+                            </p>
+                            <button color="warn" *ngIf="!this.user_agreement" mat-raised-button
+                                (click)="this.agreement()">I Agree</button>
+                            <h5 style="margin-top: 2%">Notice:</h5>
+                            <p>All information provided was gathered from within the game itself. </p>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab [disabled]="!this.user_agreement" label="Information">
+                <div id="information-tab">
+                    <div class="tab-header">
+                        <h2>Ghost Information</h2>
+                    </div>
+                    <div class="tab-container">
+                        <ul class="ghost-list">
+                            <mat-card *ngFor="let ghost of this.ghost_list" class="ghost-card">
+                                <mat-card-header>
+                                    <mat-card-title class="ghost-name">{{ghost.name}}</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <h5>Strengths</h5>
+                                    <p>{{ghost.strengths}}</p>
+                                    <h5>Weaknesses</h5>
+                                    <p>{{ghost.weaknesses}}</p>
+                                    <h5>Description</h5>
+                                    <p>{{ghost.description}}</p>
+                                    <h5>Evidence</h5>
+                                    <ul>
+                                        <li>{{ghost.evidence[0]}}</li>
+                                        <li>{{ghost.evidence[1]}}</li>
+                                        <li>{{ghost.evidence[2]}}</li>
+                                    </ul>
+                                </mat-card-content>
+                            </mat-card>
+                        </ul>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab [disabled]="!this.user_agreement" label="Calculator">
+                <div id="calculator-tab">
+                    <div class="tab-header">
+                        <h2>Journal</h2>
+                    </div>
+                    <div class="tab-container">
+                        <h4 style="text-align: center;">Evidence</h4>
+                        <div>
+                            <ul class="evidence-list">
+                                <mat-checkbox *ngFor="let ev of this.evidence_keys" class="checkbox-evidence"
+                                    (change)="toggleCheck(ev)" [(checked)]="checked" (click)="agreement()">{{ev}}
+                                </mat-checkbox>
+                            </ul>
+                            <ul class="ghost-list">
+                                <mat-card class="ghost-card" *ngFor="let ghost of this.ghost_possibilities">
+                                    <mat-card-header>
+                                        <mat-card-title>{{ghost.name}}</mat-card-title>
+                                        <mat-card-subtitle>Ghost</mat-card-subtitle>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <h5>Strengths</h5>
+                                        <p>{{ghost.strengths}}</p>
+                                        <h5>Weaknesses</h5>
+                                        <p>{{ghost.weaknesses}}</p>
+                                        <h5>Description</h5>
+                                        <p>{{ghost.description}}</p>
+                                        <h5>Evidence</h5>
+                                        <ul>
+                                            <li>{{ghost.evidence[0]}}</li>
+                                            <li>{{ghost.evidence[1]}}</li>
+                                            <li>{{ghost.evidence[2]}}</li>
+                                        </ul>
+                                    </mat-card-content>
+                                </mat-card>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
