@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.current_url = window.location.href.split('/')[3];
-    console.log(this.current_url);
     this.isTabletScreen = this._breakpointObserver.isMatched('(max-width: 1000px');
 
     // Easter Egg? hmm..
