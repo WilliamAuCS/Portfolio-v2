@@ -21,7 +21,6 @@ export class PhasmophobiaComponent implements OnInit {
     "Ghost Orb": false,
     "Ghost Writing": false,
   }
-  private checked_count: number = 0;
   public evidence_keys = [];
   private checked_evidence = [];
   private similar_evicence = {
@@ -69,12 +68,10 @@ export class PhasmophobiaComponent implements OnInit {
     // If it is now true, push it to checked_evidence array
     if (this.evidence[evidence_name] == true) {
       this.checked_evidence.push(evidence_name);
-      this.checked_count++;
       tr = true;
     }
     // If it is now false, remove from checked_evidence array
     else {
-      this.checked_count--;
       for (let index = 0; index < this.checked_evidence.length; index++) {
         if (this.checked_evidence[index] === evidence_name) {
           this.checked_evidence.splice(index, 1);

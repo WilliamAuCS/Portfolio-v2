@@ -8,7 +8,6 @@ import { ModulesModule } from './modules/modules.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { PlatformModule } from '@angular/cdk/platform';
-import { PhasmophobiaComponent } from './game_modules/phasmophobia/phasmophobia.component';
 import { LeagueOfLegendsComponent } from './game_modules/league-of-legends/league-of-legends.component';
 import { GameModulesModule } from './game_modules/game_modules.module';
 
