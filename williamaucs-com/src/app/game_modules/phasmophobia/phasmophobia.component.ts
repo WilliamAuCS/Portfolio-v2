@@ -21,7 +21,6 @@ export class PhasmophobiaComponent implements OnInit {
     "Ghost Orb": false,
     "Ghost Writing": false,
   }
-  private checked_count: number = 0;
   public evidence_keys = [];
   private checked_evidence = [];
   private similar_evicence = {
@@ -34,6 +33,8 @@ export class PhasmophobiaComponent implements OnInit {
   };
   public similar_evidence_copy = Object.assign({}, this.similar_evicence);
   public checked = false;
+  public uniqueEvidence = [];
+  public displayUnique: boolean = false;
 
 
   constructor(private _auth: AuthService) {
@@ -69,12 +70,10 @@ export class PhasmophobiaComponent implements OnInit {
     // If it is now true, push it to checked_evidence array
     if (this.evidence[evidence_name] == true) {
       this.checked_evidence.push(evidence_name);
-      this.checked_count++;
       tr = true;
     }
     // If it is now false, remove from checked_evidence array
     else {
-      this.checked_count--;
       for (let index = 0; index < this.checked_evidence.length; index++) {
         if (this.checked_evidence[index] === evidence_name) {
           this.checked_evidence.splice(index, 1);
@@ -88,36 +87,67 @@ export class PhasmophobiaComponent implements OnInit {
 
   // Calculates which ghosts match the corresponding evidence
   calculatePossibilities(tr) {
-    if (this.checked_count <= 3) {
-      // If false, reset ghost_possibilities
-      if (tr == false) {
-        this.ghost_possibilities = Array.from(this.ghost_list);
-        this.similar_evidence_copy = Object.assign({}, this.similar_evicence);
-      }
-      // To remove
-      let to_remove = [];
-      // console.log(this.ghost_possibilities.length)
-      // console.log(this.ghost_list)
-      for (let index = 0; index < this.ghost_possibilities.length; index++) {
-        for (let j = 0; j < this.checked_evidence.length; j++) {
-          // If element in ghost_possibilities does NOT have one of the evidence, set to remove
-          if (this.ghost_possibilities[index].evidence.includes(this.checked_evidence[j]) == false) {
-            to_remove.push(index);
-            break;
-          }
+    // If false, reset ghost_possibilities
+    if (tr == false) {
+      this.ghost_possibilities = Array.from(this.ghost_list);
+      this.similar_evidence_copy = Object.assign({}, this.similar_evicence);
+    }
+    // To remove
+    let to_remove = [];
+    for (let index = 0; index < this.ghost_possibilities.length; index++) {
+      for (let j = 0; j < this.checked_evidence.length; j++) {
+        // If element in ghost_possibilities does NOT have one of the evidence, set to remove
+        if (this.ghost_possibilities[index].evidence.includes(this.checked_evidence[j]) == false) {
+          to_remove.push(index);
+          break;
         }
       }
-      // Removing from ghost_possibilities array
-      for (let index = 0; index < to_remove.length; index++) {
-        // Avoids duplicates in to_remove array
-        if (index > 0 && to_remove[index] === to_remove[index - 1]) {
-          continue;
+    }
+    // Removing from ghost_possibilities array
+    for (let index = 0; index < to_remove.length; index++) {
+      // Avoids duplicates in to_remove array
+      if (index > 0 && to_remove[index] === to_remove[index - 1]) {
+        continue;
+      }
+      // Removing evidence from similar_evidence_copy
+      for (let j = 0; j < 3; j++) {
+        this.similar_evidence_copy[this.ghost_possibilities[to_remove[index] - index].evidence[j]]--;
+      }
+      this.ghost_possibilities.splice(to_remove[index] - index, 1);
+    }
+    if (this.ghost_possibilities.length < 5 && this.ghost_possibilities.length >= 2) {
+      this.displayUnique = true;
+      this.displayUniqueEvidence(tr);
+    }
+    else {
+      if (this.ghost_possibilities.length < 2) {
+        this.uniqueEvidence = [];
+      }
+      this.displayUnique = false;
+    }
+  }
+
+  displayUniqueEvidence(tr) {
+    let allEvidence = [];
+
+    this.uniqueEvidence = [];
+    // Pushing all evidence to allEvidence array
+    for (let index = 0; index < this.ghost_possibilities.length; index++) {
+      for (let j = 0; j < 3; j++) {
+        allEvidence.push(this.ghost_possibilities[index].evidence[j]);
+      }
+    }
+    // Sorting
+    allEvidence.sort();
+    for (let index = 0; index < allEvidence.length; index++) {
+      if (allEvidence[index] === allEvidence[index - 1] || allEvidence[index] == allEvidence[index + 1]) {
+        continue;
+      }
+      else {
+        // If uniqueEvidence does NOT include current, push to uniqueEvidence
+        if (!this.uniqueEvidence.includes(allEvidence[index])) {
+          this.uniqueEvidence.push(allEvidence[index]);
         }
-        // Removing evidence from similar_evidence_copy
-        for (let j = 0; j < 3; j++) {
-          this.similar_evidence_copy[this.ghost_possibilities[to_remove[index] - index].evidence[j]]--;
-        }
-        this.ghost_possibilities.splice(to_remove[index] - index, 1);
       }
     }
   }

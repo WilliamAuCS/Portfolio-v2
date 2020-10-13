@@ -1,7 +1,7 @@
 <div class="background">
     <div class="fade-in-soft">
         <mat-tab-group mat-align-tabs="center" animationDuration="1000ms">
-            <mat-tab label="Description">
+            <mat-tab label="Description" class="test">
                 <div id="description-tab">
                     <div class="tab-header">
                         <h2>Phasmophobia</h2>
@@ -10,13 +10,15 @@
                         <div class="important-messages">
                             <h3 color="warn" style="color: red">WARNING:</h3>
                             <p>
-                                Some may find the following material disturbing. If you do not wish
+                                Some viewers may find the following material disturbing. If you do not wish
                                 to be exposed to the following material, please click away now.
                             </p>
                             <button color="warn" *ngIf="!this.user_agreement" mat-raised-button
                                 (click)="this.agreement()">I Agree</button>
-                            <h5 style="margin-top: 2%">Notice:</h5>
-                            <p>All information provided was gathered from within the game itself. </p>
+                            <div id="notice-message">
+                                <h5>Notice:</h5>
+                                <p>All information provided was gathered from within the game itself. </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,6 +66,12 @@
                                     (change)="toggleCheck(ev)" [(checked)]="checked" (click)="agreement()">{{ev}}
                                 </mat-checkbox>
                             </ul>
+                            <div *ngIf="this.displayUnique" class="unique-evidence">
+                                <h4 style="text-align: center; text-decoration: underline;">Unique Evidence</h4>
+                                <ul>
+                                    <li *ngFor="let unique of this.uniqueEvidence">{{unique}}</li>
+                                </ul>
+                            </div>
                             <ul class="ghost-list">
                                 <mat-card class="ghost-card" *ngFor="let ghost of this.ghost_possibilities">
                                     <mat-card-header>
