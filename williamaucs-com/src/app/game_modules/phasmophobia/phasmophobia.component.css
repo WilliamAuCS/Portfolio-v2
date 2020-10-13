@@ -92,6 +92,15 @@ mat-card-content h5 {
     margin-top: 2%;
 }
 
+.unique-evidence {
+    display: flex;
+    flex-direction: column;
+}
+
+.unique-evidence ul{
+    margin: 0 auto 0 auto;
+}
+
 @media (max-width: 1000px) {
     .ghost-card {
         max-width: 300px;

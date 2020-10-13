@@ -66,6 +66,12 @@
                                     (change)="toggleCheck(ev)" [(checked)]="checked" (click)="agreement()">{{ev}}
                                 </mat-checkbox>
                             </ul>
+                            <div *ngIf="this.displayUnique" class="unique-evidence">
+                                <h4 style="text-align: center; text-decoration: underline;">Unique Evidence</h4>
+                                <ul>
+                                    <li *ngFor="let unique of this.uniqueEvidence">{{unique}}</li>
+                                </ul>
+                            </div>
                             <ul class="ghost-list">
                                 <mat-card class="ghost-card" *ngFor="let ghost of this.ghost_possibilities">
                                     <mat-card-header>

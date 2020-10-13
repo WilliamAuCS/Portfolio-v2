@@ -33,6 +33,8 @@ export class PhasmophobiaComponent implements OnInit {
   };
   public similar_evidence_copy = Object.assign({}, this.similar_evicence);
   public checked = false;
+  public uniqueEvidence = [];
+  public displayUnique: boolean = false;
 
 
   constructor(private _auth: AuthService) {
@@ -112,6 +114,41 @@ export class PhasmophobiaComponent implements OnInit {
         this.similar_evidence_copy[this.ghost_possibilities[to_remove[index] - index].evidence[j]]--;
       }
       this.ghost_possibilities.splice(to_remove[index] - index, 1);
+    }
+    if (this.ghost_possibilities.length < 5 && this.ghost_possibilities.length >= 2) {
+      this.displayUnique = true;
+      this.displayUniqueEvidence(tr);
+    }
+    else {
+      if (this.ghost_possibilities.length < 2) {
+        this.uniqueEvidence = [];
+      }
+      this.displayUnique = false;
+    }
+  }
+
+  displayUniqueEvidence(tr) {
+    let allEvidence = [];
+
+    this.uniqueEvidence = [];
+    // Pushing all evidence to allEvidence array
+    for (let index = 0; index < this.ghost_possibilities.length; index++) {
+      for (let j = 0; j < 3; j++) {
+        allEvidence.push(this.ghost_possibilities[index].evidence[j]);
+      }
+    }
+    // Sorting
+    allEvidence.sort();
+    for (let index = 0; index < allEvidence.length; index++) {
+      if (allEvidence[index] === allEvidence[index - 1] || allEvidence[index] == allEvidence[index + 1]) {
+        continue;
+      }
+      else {
+        // If uniqueEvidence does NOT include current, push to uniqueEvidence
+        if (!this.uniqueEvidence.includes(allEvidence[index])) {
+          this.uniqueEvidence.push(allEvidence[index]);
+        }
+      }
     }
   }
 }
