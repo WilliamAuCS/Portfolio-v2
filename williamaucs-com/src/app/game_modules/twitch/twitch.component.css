@@ -1,0 +1,39 @@
+.background {
+    color: white;
+    /* border: 1px solid red; */
+}
+
+#title-header {
+    text-align: center;
+}
+
+.content-wrapper {
+    /* border: 1px solid blue; */
+    margin: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card-item {
+    max-width: 400px;
+}
+
+.input-holder {
+    display: block;
+    margin: 0 auto 0 auto;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.form-button {
+    display: block;
+    margin: 3% auto 0 auto !important;
+    outline: none;
+}
+
+.streamer_content {
+    padding: 5px;
+    border: 2px solid black;
+}

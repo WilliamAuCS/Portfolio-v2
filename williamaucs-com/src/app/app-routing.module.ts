@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PhasmophobiaComponent } from './game_modules/phasmophobia/phasmophobia.component';
+import { TwitchComponent } from './game_modules/twitch/twitch.component';
 import { ContactComponent } from './modules/contact/contact.component';
 
 // Page Components
@@ -16,6 +17,7 @@ const routes: Routes = [
 
   // game_modules
   { path: 'phasmophobia', component: PhasmophobiaComponent }, 
+  { path: 'twitch-api', component: TwitchComponent }, 
   
 ]
 
