@@ -1,0 +1,30 @@
+<div class="background">
+    <div class="fade-in-soft">
+        <h1 id="title-header">Twitch API</h1>
+        <div class="content-wrapper">
+            <mat-card *ngFor="let element of twitch_input" class="card-item">
+                <mat-card-header>
+                    <mat-card-title>{{element.title}}</mat-card-title>
+                    <mat-card-subtitle>Twitch API</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{element.content}}</p>
+                    <div class="streamer_content" *ngIf="element.result">
+                        <h6 style="text-align: center;" *ngIf="element.closest_match">User not found. Did you mean this streamer?</h6>
+                        <h5 style="text-align: center;">Streamer Information</h5>
+                        <p *ngFor="let cont of element.result">{{cont}}</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <mat-form-field style="width: 30%;" appearance="standard" class="input-holder">
+                        <mat-label>{{element.input_question}}</mat-label>
+                        <input matInput placeholder="Enter string" type="text" [formControl]="element.input_control"
+                            placeholder="Ex. Lark_Vanity">
+                        <mat-hint>Streamer username</mat-hint>
+                    </mat-form-field>
+                    <button mat-raised-button (click)="findUser()" class="form-button">Find User!</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
