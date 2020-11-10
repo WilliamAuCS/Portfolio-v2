@@ -70,7 +70,6 @@ function encryptToscrypt(toHash, callback) {
 }
 
 function sanitizeUsername(username) {
-    console.log(username)
     if (username) {
         return validator.isAscii(username);
     }
@@ -168,36 +167,39 @@ const validate_bearer_url = 'https://id.twitch.tv/oauth2/validate';
 
 // This function checks if the bearer token is valid
 function validate_bearer_token() {
-    let xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function () {
-        if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-            let expires_in = JSON.parse(xmlHttp.responseText)["expires_in"];
-            // Check if token is about to expire
-            if (expires_in < 3) {
-                // Request new token
-                return false;
+    return new Promise(function (resolve, reject) {
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                let expires_in = JSON.parse(xmlHttp.responseText)["expires_in"];
+                // Check if token is about to expire
+                if (expires_in < 3) {
+                    // Request new token
+                    resolve(false);
+                }
+                // Token is valid
+                resolve(true);
             }
-            // Token is falid
-            return true;
+            else if (xmlHttp.status >= 400) {
+                // Invalid or expired token
+                resolve(false);
+            }
         }
-        else if (xmlHttp.status >= 400) {
-            // Invalid or expired token
-            return false;
-        }
-    }
-    xmlHttp.open("GET", validate_bearer_url, true);
-    xmlHttp.setRequestHeader('Authorization', 'Bearer ' + bearerToken);
-    xmlHttp.send(null);
+        xmlHttp.open("GET", validate_bearer_url, true);
+        xmlHttp.setRequestHeader('Authorization', 'Bearer ' + bearerToken);
+        xmlHttp.send(null);
+    })
+
 }
 
-function get_bearer_token() {
+function get_bearer_token(callback) {
+
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             // Setting bearerToken
             bearerToken = JSON.parse(xmlHttp.responseText)["access_token"];
-            console.log("bearer token: " + bearerToken);
-            console.log(xmlHttp.responseText);
+            callback();
         }
     }
     xmlHttp.open("POST", twitch_get_bearer_token_URL, true);
@@ -207,16 +209,27 @@ function get_bearer_token() {
 // Receives request from front-end
 router.get('/twitch/getUser/:user', (req, res) => {
     let username = req.params.user;
-    // If bearer token is expired, request new token
-    if (validate_bearer_token() === false) {
-        get_bearer_token();
+
+    // Callback function to return data back to user
+    function returnData() {
+        get_channel_data(username).then((userInfo) => {
+            res.status(200).send({ data: userInfo });
+        }).catch((err) => {
+            console.error(err);
+            res.status(400).send("User not found");
+        });
     }
-    get_channel_data(username).then((userInfo) => {
-        res.status(200).send({data: userInfo});
-    }).catch((err) => {
-        console.error(err);
-        res.status(400).send("User not found");
-    });
+    // If bearer token is expired, request new token
+    validate_bearer_token().then((resolve) => {
+        // If token is not valid, request new token
+        if (resolve === false) {
+            get_bearer_token(returnData);
+        }
+        // If token is valid, request data
+        else {
+            returnData();
+        }
+    });    
 });
 
 const get_user_id_url = 'https://api.twitch.tv/helix/users?login=';
@@ -232,7 +245,7 @@ function get_user_id(username) {
                 return;
             }
             else if (xmlHttp.status >= 400) {
-                reject("Error");
+                reject("Error: " + xmlHttp.responseText);
                 return;
             }
         }
@@ -255,7 +268,7 @@ function get_channel_data(username) {
                 resolve(JSON.parse(xmlHttp.responseText).data[0]);
             }
             else if (xmlHttp.status >= 400) {
-                reject("Error");
+                reject("Error: " + xmlHttp.responseText);
             }
         }
         xmlHttp.open("GET", twitch_get_channel_url + username, true);
