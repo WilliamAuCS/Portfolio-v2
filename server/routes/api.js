@@ -165,6 +165,21 @@ const twitch_get_bearer_token_URL = 'https://id.twitch.tv/oauth2/token?client_id
 
 const validate_bearer_url = 'https://id.twitch.tv/oauth2/validate';
 
+// Sanitation for Twitch-API user input
+function querySanitation(req, res, next) {
+    let invalidCharacters = ['=', '<', '>', '%', '\"', "\'", '/', '&'];
+    let invalidCharacterLength = invalidCharacters.length;
+    let input = req.params.user;
+    for (let i = 0; i < input.length; i++) {
+        for (let j = 0; j < invalidCharacterLength; j++) {
+            if(input[i] == invalidCharacters[j]) {
+                return res.status(406).send("Invalid characters found");
+            }
+        }
+    }
+    next();
+}
+
 // This function checks if the bearer token is valid
 function validate_bearer_token() {
     return new Promise(function (resolve, reject) {
@@ -207,7 +222,7 @@ function get_bearer_token(callback) {
 }
 
 // Receives request from front-end
-router.get('/twitch/getUser/:user', (req, res) => {
+router.get('/twitch/getUser/:user', querySanitation, (req, res) => {
     let username = req.params.user;
 
     // Callback function to return data back to user

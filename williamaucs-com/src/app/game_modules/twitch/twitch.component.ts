@@ -56,7 +56,7 @@ export class TwitchComponent implements OnInit {
           this.twitch_input[0].result = temp.split(',');
 
           // Checking if returned user matches requested user. If not, it is top suggested
-          if(res.data['display_name'] != this.userInput_GetInformation.value) {
+          if(res.data['display_name'] != this.userInput_GetInformation.value.toLowerCase()) {
             this.twitch_input[0].closest_match = true;
           }
           else {
