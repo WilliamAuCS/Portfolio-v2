@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { TwitchService } from '../services/twitch.service';
 
 interface twitch_input_array {
@@ -7,6 +7,7 @@ interface twitch_input_array {
   input_control: FormControl,
   input_question: String,
   result: string[],
+  img_url: string, 
   closest_match: boolean, 
   content: String,
   error: boolean
@@ -17,6 +18,7 @@ interface twitch_input_array {
   templateUrl: './twitch.component.html',
   styleUrls: ['./twitch.component.css']
 })
+
 export class TwitchComponent implements OnInit {
 
   // Initializing contents
@@ -33,13 +35,16 @@ export class TwitchComponent implements OnInit {
       input_control: this.userInput_GetInformation,
       input_question: "Username",
       result: null,
+      img_url: null, 
       closest_match: false, 
       content: this.twitch_input_content,
       error: false
     }
   ];
 
-  constructor(private _twitch: TwitchService) { }
+  constructor(
+    private _twitch: TwitchService, 
+    ) {}
 
   ngOnInit(): void {
   }
@@ -50,10 +55,11 @@ export class TwitchComponent implements OnInit {
         res => {
           this.twitch_input[0].error = false;
           
+          this.twitch_input[0].img_url = res.data['thumbnail_url'];
           // Breaking JSON into HTML friendly string
-          let temp = JSON.stringify(res.data);
-          temp = temp.slice(1, temp.length - 1);
-          this.twitch_input[0].result = temp.split(',');
+          let twitch_output = JSON.stringify(res.data);
+          twitch_output = twitch_output.slice(1, twitch_output.length - 1);
+          this.twitch_input[0].result = twitch_output.split(',');
 
           // Checking if returned user matches requested user. If not, it is top suggested
           if(res.data['display_name'] != this.userInput_GetInformation.value.toLowerCase()) {
