@@ -10,8 +10,10 @@
                 <mat-card-content>
                     <p>{{element.content}}</p>
                     <div class="streamer_content" *ngIf="element.result">
-                        <h6 style="text-align: center;" *ngIf="element.closest_match">User not found. Did you mean this streamer?</h6>
+                        <h6 style="text-align: center;" *ngIf="element.closest_match">User not found. Did you mean this
+                            streamer?</h6>
                         <h5 style="text-align: center;">Streamer Information</h5>
+                        <img src="{{element.img_url}}">
                         <p *ngFor="let cont of element.result">{{cont}}</p>
                     </div>
                 </mat-card-content>
