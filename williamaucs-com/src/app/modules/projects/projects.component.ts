@@ -29,6 +29,17 @@ export class ProjectsComponent implements OnInit {
     as I gained experience in front-end developemnt, I decided to recreate my entire portfolio website into what you are \
     viewing now.", 
 
+    twitch_api: "This project displays one of the many uses for Twitch's API. Once there is user input, the front-end will send \
+    the information to the Node.js server, sanitize it, then make an API call to Twitch with the associated bearer token. Twitch \
+    will return the streamers information (or closest match) and the information is sent back to the front-end and displayed to \
+    the user.", 
+
+    phasmophobia_calculator: "Phasmophobia is a game where players (solo or in a group) must search for clues to determine \
+    the type of ghost within the building. There are currently 12 different types of ghosts, each with three unique clues to help \
+    identify this ghost. I created a calculator to help players determine which clues they must find to solve the mystery as \
+    quickly as possible. This calculator reads the ghost info from a JSON file, allowing the calculator to be modified quickly \
+    if additional ghosts are created.", 
+
     sql_database: "This project was completed for my 332 Database course. It was my first time creating a database, and \
     really sparked my interest in the field. I was in a team with two other students, drawing out diagrams to visualize the \
     structure of the database, and using PuTTY to SSL into our college's servers to create the database.", 
